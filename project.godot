@@ -11,12 +11,13 @@ config_version=5
 [application]
 
 config/name="godot-music-player"
+run/main_scene="uid://qgkmiaahid50"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-AudioManager="*res://audio-manager/audio_manager.tscn"
+AudioManager="*res://audio_manager/audio_manager.tscn"
 
 [rendering]
 
