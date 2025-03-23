@@ -17,8 +17,6 @@ script = ExtResource("1_644n3")
 metadata/_edit_horizontal_guides_ = [130.0]
 metadata/_edit_vertical_guides_ = [320.0]
 
-[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
-
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0

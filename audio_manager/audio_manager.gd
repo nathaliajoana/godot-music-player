@@ -23,6 +23,7 @@ var pause_tween : Tween
 var effects_list : Dictionary = {}
 var music_list : Dictionary = {}
 var current_song : String
+signal update_song_label
 
 #region Main functions
 func _ready() -> void:
@@ -93,6 +94,8 @@ func set_music(music_id, fade_if_active : bool = true, random : bool = false, st
 		await volume_tween.finished
 	
 	current_song = music_id
+	emit_signal("update_song_label")
+	
 	music_player.stream = music_list[music_id]
 	music_player.volume_db = 0
 	music_player.play()
