@@ -8,9 +8,8 @@ var stage_songs : Array = ["Cosy Coffee Shop", "Fading Memories", "Flavoured Wat
 
 @onready var music_player : AudioStreamPlayer = $MusicPlayer
 @onready var play_button: TextureButton = $VBoxContainer/HBoxContainer/PlayButton
-@onready var random_button: TextureButton = $VBoxContainer/HBoxContainer/RandomButton
-@onready var back_button: Button = $VBoxContainer/HBoxContainer/BackButton
-@onready var next_button: Button = $VBoxContainer/HBoxContainer/NextButton
+@onready var back_button: TextureButton = $VBoxContainer/HBoxContainer/BackButton
+@onready var next_button: TextureButton = $VBoxContainer/HBoxContainer/NextButton
 
 #region Main functions
 func _ready() -> void:
@@ -42,7 +41,7 @@ func _on_next_button_pressed() -> void:
 
 func _on_back_button_pressed() -> void:
 	song_position = stage_songs.find(AudioManager.current_song) - 1
-	if song_position < stage_songs.size() - 1: back_button.set_disabled(true) # TODO: use seek?
+	if song_position == 0: back_button.set_disabled(true) # TODO: use seek?
 	AudioManager.play_music(stage_songs, song_position, false, random, true)
 	if !play_button.is_pressed(): play_button.set_pressed_no_signal(true)
 #endregion

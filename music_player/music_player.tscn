@@ -1,11 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://qgkmiaahid50"]
+[gd_scene load_steps=12 format=3 uid="uid://qgkmiaahid50"]
 
 [ext_resource type="Script" uid="uid://b8d7qn30jk7w3" path="res://music_player/music_player.gd" id="1_644n3"]
 [ext_resource type="Texture2D" uid="uid://c646ac4mpqdx3" path="res://assets/icons/music_player/play.png" id="2_2vm4m"]
-[ext_resource type="Texture2D" uid="uid://5w2mmkd3k01u" path="res://assets/icons/music_player/random_on.png" id="2_fcjbm"]
+[ext_resource type="Texture2D" uid="uid://whfs50io5g2f" path="res://assets/icons/music_player/random_off.png" id="2_fcjbm"]
 [ext_resource type="Texture2D" uid="uid://bxysilao465c7" path="res://assets/icons/music_player/pause.png" id="3_scy8j"]
-[ext_resource type="Texture2D" uid="uid://paip5jncbilm" path="res://assets/icons/music_player/random_off.png" id="3_v34r3"]
-[ext_resource type="Texture2D" uid="uid://b6wfpqbrnnkas" path="res://icon.svg" id="4_scy8j"]
+[ext_resource type="Texture2D" uid="uid://8i307hqq0gt1" path="res://assets/icons/music_player/random_on.png" id="3_v34r3"]
+[ext_resource type="Texture2D" uid="uid://dse0fxhnopnlh" path="res://assets/icons/music_player/back.png" id="4_ddyt3"]
+[ext_resource type="Texture2D" uid="uid://bv21vqg3c1sfa" path="res://assets/icons/music_player/back_disabled.png" id="5_ifq1y"]
+[ext_resource type="Texture2D" uid="uid://b157k3drjybj0" path="res://assets/icons/music_player/next.png" id="6_11m5s"]
+[ext_resource type="Texture2D" uid="uid://tyf4xnnpu5d0" path="res://assets/icons/music_player/loop_off.png" id="6_njlrm"]
+[ext_resource type="Texture2D" uid="uid://bvqosr7p5avhe" path="res://assets/icons/music_player/next_disabled.png" id="7_cmoxv"]
+[ext_resource type="Texture2D" uid="uid://dm2labm2yt3d" path="res://assets/icons/music_player/loop_on.png" id="7_hacrv"]
 
 [node name="MusicPlayer" type="Node"]
 script = ExtResource("1_644n3")
@@ -41,47 +46,62 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 toggle_mode = true
-texture_normal = ExtResource("3_v34r3")
-texture_pressed = ExtResource("2_fcjbm")
+texture_normal = ExtResource("2_fcjbm")
+texture_pressed = ExtResource("3_v34r3")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="BackButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="BackButton2" type="Button" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
+[node name="BackButton" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("4_ddyt3")
+texture_disabled = ExtResource("5_ifq1y")
+ignore_texture_size = true
+stretch_mode = 5
+
 [node name="PlayButton" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 toggle_mode = true
 texture_normal = ExtResource("2_2vm4m")
 texture_pressed = ExtResource("3_scy8j")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="NextButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="NextButton" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 4
+texture_normal = ExtResource("6_11m5s")
+texture_disabled = ExtResource("7_cmoxv")
+ignore_texture_size = true
+stretch_mode = 5
 
-[node name="LoopButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="LoopButton" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 4
 toggle_mode = true
-
-[node name="NextButton2" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(20, 5)
-layout_mode = 2
-texture_disabled = ExtResource("4_scy8j")
+texture_normal = ExtResource("6_njlrm")
+texture_pressed = ExtResource("7_hacrv")
 ignore_texture_size = true
-stretch_mode = 0
+stretch_mode = 5
 
 [connection signal="toggled" from="VBoxContainer/HBoxContainer/RandomButton" to="." method="_on_random_button_toggled"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/BackButton2" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="toggled" from="VBoxContainer/HBoxContainer/PlayButton" to="." method="_on_play_button_toggled"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/NextButton" to="." method="_on_next_button_pressed"]
 [connection signal="toggled" from="VBoxContainer/HBoxContainer/LoopButton" to="." method="_on_loop_button_toggled"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/NextButton2" to="." method="_on_next_button_pressed"]
