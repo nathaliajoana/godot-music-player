@@ -7,7 +7,7 @@ const effects_dir_path = "res://assets/audio/sfx/"
 const music_dir_path = "res://assets/audio/music/"
 
 @export var loop_music : bool = true
-@export var debug : bool = false
+@export var debug : bool = true
 
 @export_group("Global Button Sounds")
 @export var button_pressed_sound_id : String = "clank"
@@ -58,21 +58,21 @@ func load_from_dir(target_dict : Dictionary, dir_path) -> void:
 #endregion
 
 #region Music player
-func set_pause(pause : bool) -> void:
+func set_pause(pause : bool, smooth : bool = false) -> void:
 	if !is_instance_valid(music_player): await ready
 	
 	var target_value : float
-	if pause_tween: pause_tween.kill()
-	pause_tween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
-	if pause:
-		music_player.pitch_scale = 1
-		target_value = 0.1
-	else:
-		music_player.stream_paused = false
-		music_player.pitch_scale = 0.1
-		target_value = 1.0
-	pause_tween.tween_property(music_player, "pitch_scale", target_value, pitch_bend_delay)
-	await pause_tween.finished
+	if smooth:
+		if pause_tween: pause_tween.kill()
+		pause_tween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+		if pause:
+			music_player.pitch_scale = 1
+			target_value = 0.1
+		else:
+			music_player.pitch_scale = 0.1
+			target_value = 1.0
+		pause_tween.tween_property(music_player, "pitch_scale", target_value, pitch_bend_delay)
+		await pause_tween.finished
 	music_player.stream_paused = pause
 
 func set_music(music_id, fade_if_active : bool = true, random : bool = false, stage_songs : Array = []) -> void:
@@ -99,9 +99,10 @@ func play_music(
 		fade : bool = true,
 		random : bool = false
 	) -> void:
+		if debug: printerr("Randomize set to ", random)
 		if random: music_id = randi_range(0, music_array.size() - 1)
 		var selected_music = music_array[music_id]
-		AudioManager.set_music(selected_music, fade, random, music_array)
+		set_music(selected_music, fade, random, music_array)
 
 func _on_music_finished() -> void:
 	if randomized_songs and loop_music: set_music(0, true, true, randomized_songs_array)
@@ -162,7 +163,7 @@ func connect_to_button(button : Button)  -> void:
 	button.focus_entered.connect(_on_button_focused)
 	button.mouse_entered.connect(_on_button_hovered)
 
-func _on_button_pressed() -> void: play_sound_effect(button_pressed_sound_id)
-func _on_button_focused() -> void: play_sound_effect(button_focused_sound_id)
-func _on_button_hovered() -> void: play_sound_effect(button_hovered_sound_id)
+func _on_button_pressed() -> void: pass #play_sound_effect(button_pressed_sound_id)
+func _on_button_focused() -> void: pass #play_sound_effect(button_focused_sound_id)
+func _on_button_hovered() -> void: pass #play_sound_effect(button_hovered_sound_id)
 #endregion
