@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dbnimsws0ji7h"
+path="res://.godot/imported/Fading Memories.wav-f202a40f2453d1a8a4b2cc83338dc2ff.sample"
+
+[deps]
+
+source_file="res://assets/audio/music/Fading Memories.wav"
+dest_files=["res://.godot/imported/Fading Memories.wav-f202a40f2453d1a8a4b2cc83338dc2ff.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

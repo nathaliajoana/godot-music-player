@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://6tbvxrdu7ntt"
+path="res://.godot/imported/London Is Calling.wav-5415b3b798eeeb3cd4ce74cd93821c82.sample"
+
+[deps]
+
+source_file="res://assets/audio/music/London Is Calling.wav"
+dest_files=["res://.godot/imported/London Is Calling.wav-5415b3b798eeeb3cd4ce74cd93821c82.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

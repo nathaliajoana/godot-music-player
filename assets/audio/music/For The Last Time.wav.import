@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dib5kcgbs78j6"
+path="res://.godot/imported/For The Last Time.wav-52b9504473eb9ae75eb5ade4ced2e97f.sample"
+
+[deps]
+
+source_file="res://assets/audio/music/For The Last Time.wav"
+dest_files=["res://.godot/imported/For The Last Time.wav-52b9504473eb9ae75eb5ade4ced2e97f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

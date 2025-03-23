@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dqbq06j3mjse0"
+path="res://.godot/imported/Head In The Clouds.wav-f9d899d7f7bd1178ae6452e5159cdb35.sample"
+
+[deps]
+
+source_file="res://assets/audio/music/Head In The Clouds.wav"
+dest_files=["res://.godot/imported/Head In The Clouds.wav-f9d899d7f7bd1178ae6452e5159cdb35.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
