@@ -101,11 +101,12 @@ func play_music(
 		music_array : Array,
 		music_id : int = 0,
 		fade : bool = true,
-		random : bool = false
+		random : bool = false,
+		override_pause : bool = false
 	) -> void:
 		if random: music_id = randi_range(0, music_array.size() - 1)
 		var selected_music = music_array[music_id]
-		if music_player.stream_paused:
+		if music_player.stream_paused && !override_pause: 
 			music_player.set_stream_paused(false)
 		else: 
 			set_music(selected_music, fade, random, music_array)
