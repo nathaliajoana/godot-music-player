@@ -4,12 +4,17 @@
 
 [node name="MusicPlayer" type="Node"]
 script = ExtResource("1_644n3")
+metadata/_edit_horizontal_guides_ = [130.0]
+metadata/_edit_vertical_guides_ = [320.0]
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-offset_right = 300.0
-offset_bottom = 150.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer"]
@@ -45,7 +50,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 toggle_mode = true
 action_mode = 0
-text = "Play"
 icon_alignment = 1
 
 [node name="NextButton" type="Button" parent="VBoxContainer/HBoxContainer"]
@@ -57,6 +61,10 @@ size_flags_vertical = 4
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 size_flags_vertical = 4
+toggle_mode = true
 
 [connection signal="toggled" from="VBoxContainer/HBoxContainer/RandomizeButton" to="." method="_on_randomize_button_toggled"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="toggled" from="VBoxContainer/HBoxContainer/PlayButton" to="." method="_on_play_button_toggled"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="toggled" from="VBoxContainer/HBoxContainer/LoopButton" to="." method="_on_loop_button_toggled"]

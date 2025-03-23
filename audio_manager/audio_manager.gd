@@ -22,6 +22,7 @@ var randomized_songs_array : Array = []
 var pause_tween : Tween
 var effects_list : Dictionary = {}
 var music_list : Dictionary = {}
+var current_song : String
 
 #region Main functions
 func _ready() -> void:
@@ -77,6 +78,7 @@ func set_pause(pause : bool, smooth : bool = false) -> void:
 
 func set_music(music_id, fade_if_active : bool = true, random : bool = false, stage_songs : Array = []) -> void:
 	randomized_songs_array = stage_songs
+	
 	if random:
 		randomize()
 		randomized_songs = true
@@ -89,6 +91,7 @@ func set_music(music_id, fade_if_active : bool = true, random : bool = false, st
 		volume_tween.tween_property(music_player, "volume_db", -20, music_fade_timer)
 		await volume_tween.finished
 	
+	current_song = music_id
 	music_player.stream = music_list[music_id]
 	music_player.volume_db = 0
 	music_player.play()
@@ -99,7 +102,6 @@ func play_music(
 		fade : bool = true,
 		random : bool = false
 	) -> void:
-		if debug: printerr("Randomize set to ", random)
 		if random: music_id = randi_range(0, music_array.size() - 1)
 		var selected_music = music_array[music_id]
 		set_music(selected_music, fade, random, music_array)

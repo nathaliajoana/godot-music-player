@@ -19,6 +19,11 @@ config/icon="res://icon.svg"
 
 AudioManager="*res://audio_manager/audio_manager.tscn"
 
+[display]
+
+window/size/viewport_width=320
+window/size/viewport_height=130
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
