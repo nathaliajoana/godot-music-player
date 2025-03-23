@@ -24,6 +24,13 @@ AudioManager="*res://audio_manager/audio_manager.tscn"
 window/size/viewport_width=320
 window/size/viewport_height=130
 
+[file_customization]
+
+folder_colors={
+"res://audio_manager/": "yellow",
+"res://music_player/": "purple"
+}
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
