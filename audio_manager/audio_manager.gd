@@ -61,9 +61,8 @@ func load_from_dir(target_dict : Dictionary, dir_path) -> void:
 #region Music player
 func set_pause(pause : bool, smooth : bool = false) -> void:
 	if !is_instance_valid(music_player): await ready
-	
-	var target_value : float
 	if smooth:
+		var target_value : float
 		if pause_tween: pause_tween.kill()
 		pause_tween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 		if pause:
@@ -74,7 +73,9 @@ func set_pause(pause : bool, smooth : bool = false) -> void:
 			target_value = 1.0
 		pause_tween.tween_property(music_player, "pitch_scale", target_value, pitch_bend_delay)
 		await pause_tween.finished
-	music_player.stream_paused = pause
+		
+	music_player.set_stream_paused(pause)
+	if debug: printerr("stream paused set to ", music_player.stream_paused)
 
 func set_music(music_id, fade_if_active : bool = true, random : bool = false, stage_songs : Array = []) -> void:
 	randomized_songs_array = stage_songs
@@ -104,7 +105,10 @@ func play_music(
 	) -> void:
 		if random: music_id = randi_range(0, music_array.size() - 1)
 		var selected_music = music_array[music_id]
-		set_music(selected_music, fade, random, music_array)
+		if music_player.stream_paused:
+			music_player.set_stream_paused(false)
+		else: 
+			set_music(selected_music, fade, random, music_array)
 
 func _on_music_finished() -> void:
 	if randomized_songs and loop_music: set_music(0, true, true, randomized_songs_array)
