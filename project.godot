@@ -23,6 +23,7 @@ AudioManager="*res://audio_manager/audio_manager.tscn"
 
 window/size/viewport_width=320
 window/size/viewport_height=130
+window/stretch/mode="canvas_items"
 
 [file_customization]
 

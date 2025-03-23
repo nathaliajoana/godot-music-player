@@ -1,6 +1,6 @@
 extends Node
 
-var random : bool = false
+var random : bool = false # TODO: improve randomize to avoid current song
 var loop_current_song : bool = false # TODO: add logic to loop when toggled
 var song_position : int = 0
 
@@ -27,7 +27,7 @@ func _on_play_button_toggled(toggled_on: bool) -> void:
 		AudioManager.set_pause(true)	
 	
 func _on_random_button_toggled(toggled_on: bool) -> void:
-	random = toggled_on
+	random = toggled_on 
 
 func _on_loop_button_toggled(toggled_on: bool) -> void:
 	loop_current_song = toggled_on 
@@ -41,7 +41,7 @@ func _on_next_button_pressed() -> void:
 
 func _on_back_button_pressed() -> void:
 	song_position = stage_songs.find(AudioManager.current_song) - 1
-	if song_position == 0: back_button.set_disabled(true) # TODO: use seek?
+	if song_position == 0: back_button.set_disabled(true)
 	AudioManager.play_music(stage_songs, song_position, false, random, true)
 	if !play_button.is_pressed(): play_button.set_pressed_no_signal(true)
 #endregion

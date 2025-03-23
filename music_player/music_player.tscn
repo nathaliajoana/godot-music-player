@@ -51,12 +51,6 @@ texture_pressed = ExtResource("3_v34r3")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="BackButton2" type="Button" parent="VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(20, 20)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
 [node name="BackButton" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
@@ -100,7 +94,6 @@ ignore_texture_size = true
 stretch_mode = 5
 
 [connection signal="toggled" from="VBoxContainer/HBoxContainer/RandomButton" to="." method="_on_random_button_toggled"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/BackButton2" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="toggled" from="VBoxContainer/HBoxContainer/PlayButton" to="." method="_on_play_button_toggled"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/NextButton" to="." method="_on_next_button_pressed"]
