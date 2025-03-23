@@ -16,7 +16,7 @@ var stage_songs : Array = ["Cosy Coffee Shop", "Fading Memories", "Flavoured Wat
 func _ready() -> void:
 	play_button.set_text("Play") # TODO: change icon using TexturedButton
 	back_button.set_disabled(true) # TODO: enable after first song finishes
-	next_button.set_disabled(true)
+	next_button.set_disabled(true) # TODO: do we want this to be enabled at first?
 #endregion
 
 #region Signals
@@ -40,13 +40,14 @@ func _on_next_button_pressed() -> void:
 	song_position = stage_songs.find(AudioManager.current_song) + 1
 	if song_position > stage_songs.size() - 1: song_position = 0
 	AudioManager.play_music(stage_songs, song_position, false, random, true)
-	printerr("----- pressed before? ", play_button.button_pressed)
-	if !play_button.is_pressed(): play_button.set_pressed_no_signal(true) # only if play_button.button_pressed false
-	printerr("----- pressed after? ", play_button.button_pressed)
+	if !play_button.is_pressed(): play_button.set_pressed_no_signal(true)
 	back_button.set_disabled(false)
 
 func _on_back_button_pressed() -> void:
 	song_position = stage_songs.find(AudioManager.current_song) - 1
-	if song_position < stage_songs.size() - 1: back_button.set_disabled(true) # TODO: use seek?
-	AudioManager.play_music(stage_songs, song_position, false, random)
+	if song_position < stage_songs.size() - 1: 
+		#song_position = 0
+		back_button.set_disabled(true) # TODO: use seek?
+	AudioManager.play_music(stage_songs, song_position, false, random, true)
+	if !play_button.is_pressed(): play_button.set_pressed_no_signal(true)
 #endregion

@@ -17,7 +17,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="SongLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = "Nome"
 horizontal_alignment = 1
