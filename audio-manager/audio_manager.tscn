@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3156o2qcoowk"]
+
+[ext_resource type="Script" uid="uid://dev3v4nrh5x2v" path="res://audio-manager/audio_manager.gd" id="1_byoen"]
+
+[node name="AudioManager" type="Node"]
+process_mode = 3
+script = ExtResource("1_byoen")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="EffectsPositions" type="Node2D" parent="."]
