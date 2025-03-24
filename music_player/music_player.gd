@@ -14,7 +14,7 @@ var stage_songs : Array = ["Cosy Coffee Shop", "Fading Memories", "Flavoured Wat
 
 #region Main functions
 func _ready() -> void:
-	AudioManager.connect("update_song_label", _on_update_song_label)
+	AudioManager.update_song_label.connect(_on_update_song_label)
 	
 	song_label.set_text(stage_songs[0])
 	back_button.set_disabled(true) # TODO: enable after first song finishes
