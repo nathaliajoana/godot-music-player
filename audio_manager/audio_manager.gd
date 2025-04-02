@@ -74,7 +74,7 @@ func set_pause(pause : bool, smooth : bool = false) -> void:
 			target_value = 1.0
 		pause_tween.tween_property(music_player, "pitch_scale", target_value, pitch_bend_delay)
 		await pause_tween.finished
-		
+	
 	music_player.set_stream_paused(pause)
 
 func set_music(music_id, fade_if_active : bool = true, random : bool = false, stage_songs : Array = []) -> void:
@@ -114,6 +114,9 @@ func play_music(
 
 func get_audio_stream_length() -> float:
 	return music_player.stream.get_length()
+	
+func get_playback_position() -> float:
+	return music_player.get_playback_position()
 
 func _on_music_finished() -> void:
 	if randomized_songs and loop_music: set_music(0, true, true, randomized_songs_array)
