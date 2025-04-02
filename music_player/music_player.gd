@@ -10,6 +10,7 @@ var stage_songs : Array = ["Cosy Coffee Shop", "Fading Memories", "Flavoured Wat
 @onready var back_button: TextureButton = $VBoxContainer/HBoxContainer/BackButton
 @onready var next_button: TextureButton = $VBoxContainer/HBoxContainer/NextButton
 @onready var song_label: Label = $VBoxContainer/SongLabel
+@onready var h_slider: HSlider = $VBoxContainer/HSlider
 
 #region Main functions
 func _ready() -> void:
@@ -18,6 +19,9 @@ func _ready() -> void:
 	song_label.set_text(stage_songs[0])
 	back_button.set_disabled(true) # TODO: enable after first song finishes
 	next_button.set_disabled(true) # TODO: do we want this to be enabled at first?
+	
+func _process(_delta) -> void:
+	h_slider.set_value(AudioManager.get_playback_position())
 #endregion
 
 #region Signals
@@ -48,5 +52,6 @@ func _on_back_button_pressed() -> void:
 	if !play_button.is_pressed(): play_button.set_pressed_no_signal(true)
 	
 func _on_song_playing() -> void:
+	h_slider.set_max(AudioManager.get_audio_stream_length())
 	song_label.set_text(AudioManager.current_song)
 #endregion
