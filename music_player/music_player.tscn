@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://qgkmiaahid50"]
+[gd_scene load_steps=13 format=3 uid="uid://qgkmiaahid50"]
 
 [ext_resource type="Script" uid="uid://b8d7qn30jk7w3" path="res://music_player/music_player.gd" id="1_644n3"]
 [ext_resource type="Texture2D" uid="uid://c646ac4mpqdx3" path="res://assets/icons/music_player/play.png" id="2_2vm4m"]
 [ext_resource type="Texture2D" uid="uid://whfs50io5g2f" path="res://assets/icons/music_player/random_off.png" id="2_fcjbm"]
+[ext_resource type="Script" uid="uid://cxje1bsqw6f5g" path="res://music_player/song_slider.gd" id="2_ifq1y"]
 [ext_resource type="Texture2D" uid="uid://bxysilao465c7" path="res://assets/icons/music_player/pause.png" id="3_scy8j"]
 [ext_resource type="Texture2D" uid="uid://8i307hqq0gt1" path="res://assets/icons/music_player/random_on.png" id="3_v34r3"]
 [ext_resource type="Texture2D" uid="uid://dse0fxhnopnlh" path="res://assets/icons/music_player/back.png" id="4_ddyt3"]
@@ -26,12 +27,15 @@ grow_vertical = 2
 alignment = 1
 
 [node name="SongLabel" type="Label" parent="VBoxContainer"]
+modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 text = "Nome"
 horizontal_alignment = 1
 
 [node name="HSlider" type="HSlider" parent="VBoxContainer"]
+modulate = Color(0, 0, 0, 1)
 layout_mode = 2
+script = ExtResource("2_ifq1y")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)

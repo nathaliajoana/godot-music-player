@@ -23,7 +23,7 @@ var pause_tween : Tween
 var effects_list : Dictionary = {}
 var music_list : Dictionary = {}
 var current_song : String
-signal update_song_label
+signal new_song_playing
 
 #region Main functions
 func _ready() -> void:
@@ -76,7 +76,6 @@ func set_pause(pause : bool, smooth : bool = false) -> void:
 		await pause_tween.finished
 		
 	music_player.set_stream_paused(pause)
-	if debug: printerr("stream paused set to ", music_player.stream_paused)
 
 func set_music(music_id, fade_if_active : bool = true, random : bool = false, stage_songs : Array = []) -> void:
 	randomized_songs_array = stage_songs
@@ -94,9 +93,8 @@ func set_music(music_id, fade_if_active : bool = true, random : bool = false, st
 		await volume_tween.finished
 	
 	current_song = music_id
-	emit_signal("update_song_label")
-	
 	music_player.stream = music_list[music_id]
+	emit_signal("new_song_playing")
 	music_player.volume_db = 0
 	music_player.play()
 
@@ -113,6 +111,9 @@ func play_music(
 			music_player.set_stream_paused(false)
 		else: 
 			set_music(selected_music, fade, random, music_array)
+
+func get_audio_stream_length() -> float:
+	return music_player.stream.get_length()
 
 func _on_music_finished() -> void:
 	if randomized_songs and loop_music: set_music(0, true, true, randomized_songs_array)

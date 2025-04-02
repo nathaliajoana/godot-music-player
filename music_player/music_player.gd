@@ -6,7 +6,6 @@ var song_position : int = 0
 
 var stage_songs : Array = ["Cosy Coffee Shop", "Fading Memories", "Flavoured Water"]
 
-@onready var music_player : AudioStreamPlayer = $MusicPlayer
 @onready var play_button: TextureButton = $VBoxContainer/HBoxContainer/PlayButton
 @onready var back_button: TextureButton = $VBoxContainer/HBoxContainer/BackButton
 @onready var next_button: TextureButton = $VBoxContainer/HBoxContainer/NextButton
@@ -14,7 +13,7 @@ var stage_songs : Array = ["Cosy Coffee Shop", "Fading Memories", "Flavoured Wat
 
 #region Main functions
 func _ready() -> void:
-	AudioManager.update_song_label.connect(_on_update_song_label)
+	AudioManager.new_song_playing.connect(_on_song_playing)
 	
 	song_label.set_text(stage_songs[0])
 	back_button.set_disabled(true) # TODO: enable after first song finishes
@@ -22,7 +21,6 @@ func _ready() -> void:
 #endregion
 
 #region Signals
-
 func _on_play_button_toggled(toggled_on: bool) -> void:
 	if toggled_on:
 		AudioManager.play_music(stage_songs, song_position, false, random)
@@ -49,7 +47,6 @@ func _on_back_button_pressed() -> void:
 	AudioManager.play_music(stage_songs, song_position, false, random, true)
 	if !play_button.is_pressed(): play_button.set_pressed_no_signal(true)
 	
-func _on_update_song_label() -> void:
+func _on_song_playing() -> void:
 	song_label.set_text(AudioManager.current_song)
-	
 #endregion
